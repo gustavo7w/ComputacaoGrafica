@@ -196,4 +196,3 @@ function imagem(){
          }
          return somaVariancia / numpixels;
  }
- 
