@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <article id="wrapper">
+            <section id="main">
+                <nav id="nav">
+                    <h4>Computação Gráfica 2016/1 <a href="#" class="toogle-nav btn-close">x</a></h4>
+                    <p>
+                        <input id="upload" type="file"/>
+                        <a href="" id="upload_link">
+                        <span class="glyphicon glyphicon-open-file"></span> Abrir
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#" download target="_blank" id="save">
+                        <span class="glyphicon glyphicon-save-file"></span> Salvar</p>
+                        </a>
+                    <p><span class="glyphicon glyphicon-save-file"></span> Fechar</p>
+                    <p>
+                        <a href="javascript:void(0);" onclick="Cinza()" ><span class="glyphicon glyphicon-remove"></span> Tons de Cinza</a> 
+                    </p>
+                    <!-- 
+                    <p>Ler Matriz </p>
+                    <p>Media</p>
+                    <p>Mediana </p>
+                    <p>Moda </p>
+                    <p>Variância</p>
+                    -->
+                    <p><a href="javascript:void(0);" onclick="histograma()"><span class="glyphicon glyphicon-signal"></span> Histograma</a> </p>
+                    <p><a href="javascript:void(0);" onclick="alterar('A')">Alteração A</a></p>
+                    <p><a href="javascript:void(0);" onclick="alterar('B')">Alteração B</a></p>
+                    <p><a href="javascript:void(0);" onclick="alterar('C')">Alteração C</a></p>
+                    <p><a href="javascript:void(0);" onclick="alterar('D')">Alteração D</a></p>
+                    <p><a href="javascript:void(0);" onclick="alterar('E')">Alteração E</a></p>
+                </nav>
+                <section id="content">
+                    <a href="#" class="toogle-nav btn-nav">
+                    <span class="glyphicon glyphicon-align-justify" ></span>
+                    </a>
+                    
+                    <canvas id='myCanvas' height="512" width="512">
+                    </canvas>
+					
+                    <!--Painel Lateral-->
+                    <div style="height: 300px; width: 250px; float: right">
+                        <form name="frmMatrizLivre" action="" method="get"><b>Matriz Livre</b> <br />
+                            X1: <input type="text" id="x1" value='1'><br />
+                            X2: <input type="text" id="x2" value='0'><br />
+                            X3: <input type="text" id="x3" value='0'><br />
+                            Y1: <input type="text" id="y1" value='0'><br />
+                            Y2: <input type="text" id="y2" value='1'><br />
+                            Y3: <input type="text" id="y3" value='0'><br />
+                            <input type="button" name="button" value="Aplicar" onClick="MatrizLivre(this.form)">
+                        </form>
+                        <br />
+                        <form name="frmTranslacao" action="" method="get"><b>Translação</b> <br />
+                            Esquerda: <input type="text" id="esquerda" value='0'><br />
+                            Direita: <input type="text" id="direita" value='0'><br />
+                            Cima: <input type="text" id="cima" value='0'><br />
+                            Baixo: <input type="text" id="baixo" value='0'><br />
+                            <input type="button" name="button" value="Aplicar" onClick="Translacao(this.form)">
+                        </form>
+                        <br />
+                        
+                        <b>Espelhar</b><br />
+                        <input type="button" name="button" value="Vertical" onClick="EspelharVert()">
+                        <input type="button" name="button" value="Horizontal" onClick="EspelharHoriz()"><br />
+                        <br />
+
+                        <form name="frmTranslacao" action="" method="get"><b>Rotação</b> <br />
+                            Angulo: <input type="text" id="angulo" value='0'><br />
+                            <input type="button" name="button" value="Aplicar" onClick="Rotacao(this.form)">
+                        </form>
+                        <br />
+                        
+                        <form name="frmAmpliar" action="" method="get"><b>Ampliar/Reduzir</b> <br />
+                            Multiplicador X: <input type="text" id="multiplicadorX" value='1'><br />
+                            Multiplicador Y: <input type="text" id="multiplicadorY" value='1'><br />
+                            <input type="button" name="button" value="Aplicar" onClick="AmpliacaoReducao(this.form)">
+                        </form>      
+                    </div>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" tabindex="-1" role="dialog">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Histograma</h4>
+                          </div>
+                          <div class="modal-body">
+                              <div id="media"></div>
+                              <div id="mediana"></div>
+                              <div id="moda"></div>
+                              <div id="variancia"></div>
+                              <canvas id="histograma" height="400" width="1300" style="display: inline">
+                              </canvas>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                          </div>
+                        </div><!-- /.modal-content -->
+                      </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                    
+                </section>
+            </section>
+            <section id="canvas">
+            </section>
+            
+        </article>
+        
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>-->
+		
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/jquery-ui.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/scripts.js" type="text/javascript"></script>
+        <script src="js/histograma.js" type="text/javascript"></script>
+        <script src="js/alteracoes.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            
+            buscaImagem('./Lenna.png');
+            function buscaImagem(src){
+                var canvas = document.getElementById('myCanvas');
+                var context = canvas.getContext('2d');
+                var image = new Image();
+                
+                
+                //$("#save").attr("href", canvas.toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream'));
+                document.getElementById("myCanvas").style.display = "inline";    
+                image.src = src;
+
+
+                 //window.alert("fora");
+                $(image).load(function () {
+                   // context.drawImage(image, 0, 0, 512, 512);
+                    context.drawImage(image, 0, 0);
+
+                    var imagedata = context.getImageData(0, 0, canvas.width, canvas.height);
+                    var arrPixels = imagedata.data;
+                    var numpixels = arrPixels.length / 4;                
+
+                    context.clearRect(0, 0,canvas.width,canvas.height);
+
+                    context.putImageData(imagedata,0,0);
+
+                });
+        }
+
+        </script>
+        <script>
+            $(function(){
+                $(".modal").modal({
+                    show:false,
+                    backdrop:false
+                });
+                
+                $("#upload_link").on('click', function(e){
+                    e.preventDefault();
+                    $("#upload:hidden").trigger('click');
+                });
+
+                $(":file").change(function () {
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = imageIsLoaded;
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+
+                $('.toogle-nav').click(function(e){
+                    e.stopPropagation();
+                    toogleNav();
+                });
+
+                $('.main').click(function(e){
+                    var target = $(e.target);
+                    if (!target.closest('#nav').length && $('#wrapper').hasClass('show-nav')) toogleNav();
+                });
+
+                function toogleNav(){
+                    if($('#wrapper').hasClass('show-nav')){
+                        $('#wrapper').removeClass('show-nav');
+                    }
+                    else{
+                        $('#wrapper').addClass('show-nav');
+                    }
+                }
+            });
+        function imageIsLoaded(e) {
+            buscaImagem(e.target.result);
+        };
+       </script>
+    </body>
+</html>

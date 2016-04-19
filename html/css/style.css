@@ -1,0 +1,87 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17/03/2016, 15:24:36
+    Author     : André Oliveira
+*/
+
+*{
+    margin:0;
+    padding:0;
+    font-family:arial;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#wrapper{
+    position:relative;
+    overflow: hidden;
+    width:100%;
+    height:1000px;
+}
+
+#main{
+    width:100%;
+    height:100%;
+    position:relative;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-transition: 300ms ease all;
+    transition: 300ms ease all;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    padding:3% 6%;
+}
+
+.show-nav #main{
+    -webkit-transform: translateX(400px);
+    transform: translateX(400px);
+    -webkit-transform: translate3d(400px,0,0);
+    transform: translate3d(400px,0,0);
+}
+
+#nav{
+    width:400px;
+    height:100%;
+    position:absolute;
+    top:0px;
+    left:-400px;
+    background:#000000;
+    padding:25px;
+    color:#fff;
+}
+
+.btn-close{
+    color:#FFF;
+    font-size:15px;
+    border:2px solid #fff;
+    padding:1px 11px 4px 10px;
+    width:38px;
+    margin-bottom:20px;
+    
+    border-radius:30px;
+    text-decoration: none;
+}
+
+#myCanvas
+{
+    margin: 50px auto;
+    display: block;
+    border: 1px solid #ccc;
+    position:absolute;
+    z-index:-1;
+    display:none;
+}
+
+#upload_link{
+    text-decoration:none;
+}
+#upload{
+    display:none
+}
